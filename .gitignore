@@ -1,0 +1,41 @@
+# Ignore Node.js related files and directories
+ecommerce-admin/node_modules
+ecommerce-backend/node_modules
+npm-debug.log
+
+# Ignore build artifacts and output directories
+ecommerce-admin/dist/
+ecommerce-admin/coverage/
+
+# Ignore environment-specific configuration files
+src/environments/*.ts
+
+# Ignore editor-specific files and directories
+.vscode/
+.idea/
+
+# Ignore package-lock.json for npm
+ecommerce-admin/package-lock.json
+ecommerce-backend/package-lock.json
+
+# Ignore compiled TypeScript files
+*.js
+*.js.map
+
+# Ignore logs and temporary files
+logs/
+tmp/
+
+# Ignore system and hidden files (e.g., macOS .DS_Store)
+.DS_Store q
+Thumbs.db
+
+# Ignore environment configuration files (if generated)
+.env
+.env.local
+.env.*.local
+
+# Ignore any other files or directories you want to exclude
+ecommerce-admin/.angular/cache
+ecommerce-admin/.vscode/*
+

@@ -1,0 +1,26 @@
+echo "# ecommerceAdminFE" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M master
+git remote add origin https://github.com/Poorani-design/ecommerceAdminFE.git
+git push -u origin master
+
+or push an existing repository from the command line
+git remote add origin https://github.com/Poorani-design/ecommerceAdminFE.git
+git branch -M master
+git push -u origin master
+
+
+npm install bootstrap
+
+npm i @popperjs/core
+
+"styles": [
+              ...
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+          ],
+"scripts": [
+              ...
+               "node_modules/bootstrap/dist/js/bootstrap.min.js"
+           ]
