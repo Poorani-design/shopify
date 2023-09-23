@@ -1,5 +1,4 @@
-npm init -y
-npm i
+
 npm init -y
 npm i
 
