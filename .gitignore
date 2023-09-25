@@ -17,6 +17,7 @@ src/environments/*.ts
 # Ignore package-lock.json for npm
 ecommerce-admin/package-lock.json
 ecommerce-backend/package-lock.json
+!ecommerce-backend/index.js
 
 # Ignore compiled TypeScript files
 *.js
@@ -38,4 +39,3 @@ Thumbs.db
 # Ignore any other files or directories you want to exclude
 ecommerce-admin/.angular/cache
 ecommerce-admin/.vscode/*
-
