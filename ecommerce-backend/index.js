@@ -112,7 +112,6 @@ server.get("/viewBrand", (req, res) => {
 // create brand data ===> POST
 server.post("/addBrand",upload.single('image'),(req, res) => {
   const { filename, originalname, path } = req.file;
-  // const destinationPath = path.join(__dirname, '../ecommerce-admin/src/assets/uploads/brands', filename);  
   let name = req.body.brand_name;
   let statusid = req.body.status_id;
   let qr = `INSERT INTO brand(name, img, status_id) VALUES(
