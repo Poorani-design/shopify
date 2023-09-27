@@ -10,11 +10,11 @@ import { BrandsService } from './service/brands.service';
   styleUrls: ['./brand.component.css']
 })
 export class BrandComponent {
-
+getparamsid:any;
   form:any;
   allbrand:any;
   brandFile:any;
-
+  showPopup:boolean=true;
   constructor(private toast: ToastService,private api:ApiService,private formBuilder:FormBuilder, private brandservice:BrandsService){
     this.getBrand();
   }
@@ -46,12 +46,12 @@ export class BrandComponent {
     formData.append('brand_name', this.form.value.brand_name);
     formData.append('status_id', this.form.value.status_id);
     formData.append('image', this.brandFile);
-
     this.brandservice.create(formData,(response:Boolean)=>{
       console.log(response);
     });
-  
-
+  this.toast.showSuccess("added successfully");
+  this.showPopup=false;
+  this.getBrand();
   }
 
   getBrand(){

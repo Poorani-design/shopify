@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
-const multer = require('multer');
+const multer = require("multer");
 var cors = require("cors");
 
 const ports = process.env.PORT || 3000;
@@ -31,7 +31,7 @@ server.listen(ports, () => {
 // Set up Multer for file upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../ecommerce-admin/src/assets/uploads/brands'); // Destination folder where the files will be stored
+    cb(null, "../ecommerce-admin/src/assets/uploads/brands"); // Destination folder where the files will be stored
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -56,15 +56,14 @@ server.post("/adminUserLoginAPI", (req, res) => {
     }
     if (result.length > 0) {
       res.send({
-        status:true,
+        status: true,
         message: "login successfully",
-        data: result
+        data: result,
       });
-    }
-    else{
+    } else {
       res.send({
-        status:false,
-      })
+        status: false,
+      });
     }
   });
 });
@@ -110,7 +109,7 @@ server.get("/viewBrand", (req, res) => {
 });
 // create brand data ===> POST
 // create brand data ===> POST
-server.post("/addBrand",upload.single('image'),(req, res) => {
+server.post("/addBrand", upload.single("image"), (req, res) => {
   const { filename, originalname, path } = req.file;
   let name = req.body.brand_name;
   let statusid = req.body.status_id;
@@ -119,7 +118,7 @@ server.post("/addBrand",upload.single('image'),(req, res) => {
               '${filename}',
               '${statusid}'
               )`;
-              console.log(qr);
+  console.log(qr);
   db.query(qr, (err, result) => {
     if (err) {
       console.log(err, "error");
@@ -130,3 +129,30 @@ server.post("/addBrand",upload.single('image'),(req, res) => {
     });
   });
 });
+// get single brand data - start here
+server.post("/editBrand/id",  (req, res) => {
+  console.log(req);
+  primaryId = req.params.id;
+  let name = req.body.brand_name;
+  let status_id = req.body.status_id;
+  let img= req.body.img;
+  // const { filename, originalname, path } = req.file;
+
+  let qr = `UPDATE brand SET name= '${name}', 
+  img= '${img}', 
+  status_id ='${status_id}' WHERE brand_id='${primaryId}'`;
+  console.log(qr);
+  db.query(qr, (err, result) => {
+    console.log(result);
+    if (err) {
+      console.log("Error : ", err);
+      return err;
+    } else {
+      res.send({
+        message: "updated successfully",
+      });
+    }
+  });
+});
+
+// get single brand data - end here
