@@ -17,14 +17,7 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/adminUserLoginAPI`,userdata);//apiurl, post, userdata
   }
 
-   //add brand data
-   addBrand(data:any):Observable<any>{
-    return this.http.post(`${this.apiUrl}/addBrand`,data);
-  }
-   //get brand data
-   getBrand(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/viewBrand`);
-  }
+
 
 
 
