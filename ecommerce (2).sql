@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2023 at 08:22 AM
+-- Generation Time: Sep 28, 2023 at 09:31 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -81,7 +81,9 @@ INSERT INTO `brand` (`brand_id`, `name`, `img`, `status_id`, `user_id`, `created
 (20, 'asdf', '1.jpg', 0, 0, '2023-09-27 11:54:51', '2023-09-27 11:54:51'),
 (21, 'asdf', '1.jpg', 0, 0, '2023-09-27 11:54:52', '2023-09-27 11:54:52'),
 (22, 'asdf', '1.jpg', 0, 0, '2023-09-28 05:09:59', '2023-09-28 05:09:59'),
-(23, 'qq', '1.jpg', 0, 3, '2023-09-28 05:11:22', '2023-09-28 05:11:22');
+(23, 'qq', '1.jpg', 0, 3, '2023-09-28 05:11:22', '2023-09-28 05:11:22'),
+(24, 'undefined', '1.jpg', 0, 0, '2023-09-28 06:43:02', '2023-09-28 06:43:02'),
+(25, 'undefined', '1.jpg', 0, 0, '2023-09-28 06:49:17', '2023-09-28 06:49:17');
 
 -- --------------------------------------------------------
 
@@ -95,9 +97,18 @@ CREATE TABLE `category` (
   `img` varchar(100) NOT NULL,
   `status_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `createdat` varchar(100) NOT NULL,
-  `updatedat` varchar(100) NOT NULL
+  `createdat` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updatedat` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `name`, `img`, `status_id`, `user_id`, `createdat`, `updatedat`) VALUES
+(1, 'Kids', '2.jpg', 0, 0, '2023-09-28 07:22:22', '0000-00-00 00:00:00'),
+(2, 'asf', '1.jpg', 0, 0, '2023-09-28 07:22:54', '0000-00-00 00:00:00'),
+(3, 'girls ', '1.jpg', 0, 0, '2023-09-28 07:28:05', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -265,13 +276,13 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `customer`
