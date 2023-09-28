@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2023 at 01:47 PM
+-- Generation Time: Sep 28, 2023 at 08:22 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -62,22 +62,42 @@ CREATE TABLE `brand` (
   `name` varchar(100) NOT NULL,
   `img` varchar(100) NOT NULL,
   `status_id` int(11) NOT NULL,
-  `createdat` varchar(100) NOT NULL,
-  `updatedat` varchar(100) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `createdat` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updatedat` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `brand`
 --
 
-INSERT INTO `brand` (`brand_id`, `name`, `img`, `status_id`, `createdat`, `updatedat`) VALUES
-(1, 'HP', 'img', 0, 'today', 'today'),
-(2, 'Samsung', 'img', 0, 'yesterday', 'yesterday'),
-(8, 'Redmi', 'img', 0, 'today', 'today'),
-(9, '', '', 0, '', ''),
-(10, 'null', 'C:fakepath	yping issue in hcl.png', 0, 'null', 'null'),
-(11, 'redmi', 'C:fakepath	yping issue in hcl.png', 0, '', ''),
-(12, 'Lenovo', 'C:fakepath	yping issue in hcl.png', 0, '', '');
+INSERT INTO `brand` (`brand_id`, `name`, `img`, `status_id`, `user_id`, `createdat`, `updatedat`) VALUES
+(1, 'Apple', 'apple.jpg', 0, 0, '2023-09-22 15:14:04', '2023-09-22 15:14:04'),
+(2, '', 'brand.jpg', 1, 0, '2023-09-22 15:21:17', '2023-09-22 15:21:17'),
+(3, '', 'brand.jpg', 1, 0, '2023-09-22 15:21:22', '2023-09-22 15:21:22'),
+(17, 'asdf', '1.jpg', 0, 0, '2023-09-27 11:54:45', '2023-09-27 11:54:45'),
+(18, 'asdf', '1.jpg', 0, 0, '2023-09-27 11:54:49', '2023-09-27 11:54:49'),
+(19, 'asdf', '1.jpg', 0, 0, '2023-09-27 11:54:50', '2023-09-27 11:54:50'),
+(20, 'asdf', '1.jpg', 0, 0, '2023-09-27 11:54:51', '2023-09-27 11:54:51'),
+(21, 'asdf', '1.jpg', 0, 0, '2023-09-27 11:54:52', '2023-09-27 11:54:52'),
+(22, 'asdf', '1.jpg', 0, 0, '2023-09-28 05:09:59', '2023-09-28 05:09:59'),
+(23, 'qq', '1.jpg', 0, 3, '2023-09-28 05:11:22', '2023-09-28 05:11:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `category_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `img` varchar(100) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `createdat` varchar(100) NOT NULL,
+  `updatedat` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -107,6 +127,84 @@ CREATE TABLE `customer` (
   `updatedat` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount`
+--
+
+CREATE TABLE `discount` (
+  `discount_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `start_date_and_time` varchar(100) NOT NULL,
+  `end_date_and_time` varchar(100) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  `createdat` varchar(100) NOT NULL,
+  `updatedat` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount_type`
+--
+
+CREATE TABLE `discount_type` (
+  `type_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `img` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `createdat` varchar(100) NOT NULL,
+  `updatedat` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `price` varchar(100) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `brand_id` int(11) NOT NULL,
+  `quantity_in_stock` varchar(100) NOT NULL,
+  `img` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `createdat` varchar(100) NOT NULL,
+  `updatedat` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `role_id` int(11) NOT NULL,
+  `role_name` varchar(50) NOT NULL,
+  `status_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status`
+--
+
+CREATE TABLE `status` (
+  `status_id` int(11) NOT NULL,
+  `status_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -124,10 +222,34 @@ ALTER TABLE `brand`
   ADD PRIMARY KEY (`brand_id`);
 
 --
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Indexes for table `discount`
+--
+ALTER TABLE `discount`
+  ADD PRIMARY KEY (`discount_id`);
+
+--
+-- Indexes for table `discount_type`
+--
+ALTER TABLE `discount_type`
+  ADD PRIMARY KEY (`type_id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -143,13 +265,37 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `discount`
+--
+ALTER TABLE `discount`
+  MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `discount_type`
+--
+ALTER TABLE `discount_type`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
