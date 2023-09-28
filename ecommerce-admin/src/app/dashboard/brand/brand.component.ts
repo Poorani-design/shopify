@@ -1,7 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from 'src/services/toast/toast.service';
-import { ApiService } from 'src/services/api.service';
 import { BrandsService } from './service/brands.service';
 
 @Component({
@@ -14,8 +13,7 @@ getparamsid:any;
   form:any;
   allbrand:any;
   brandFile:any;
-  showPopup:boolean=true;
-  constructor(private toast: ToastService,private api:ApiService,private formBuilder:FormBuilder, private brandservice:BrandsService){
+  constructor(private toast: ToastService,private formBuilder:FormBuilder, private brandservice:BrandsService){
     this.getBrand();
   }
 
@@ -52,7 +50,7 @@ getparamsid:any;
       console.log(response);
     });
   this.toast.showSuccess("added successfully");
-  this.showPopup=false;
+
   this.getBrand();
   }
 
