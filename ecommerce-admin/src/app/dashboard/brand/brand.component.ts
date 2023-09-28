@@ -34,6 +34,7 @@ getparamsid:any;
     this.form = this.formBuilder.group({
       brand_name: ['', Validators.required],
       status_id: ['', Validators.required],
+      user_id: ['', Validators.required],
     });
   }
 
@@ -45,6 +46,7 @@ getparamsid:any;
     console.log('image', this.brandFile);
     formData.append('brand_name', this.form.value.brand_name);
     formData.append('status_id', this.form.value.status_id);
+    formData.append('status_id', this.form.value.user_id);
     formData.append('image', this.brandFile);
     this.brandservice.create(formData,(response:Boolean)=>{
       console.log(response);
@@ -55,7 +57,7 @@ getparamsid:any;
   }
 
   getBrand(){
-    this.api.getBrand().subscribe((res)=>{
+    this.brandservice.getBrand().subscribe((res)=>{
       console.log(res);
       this.allbrand=res.data;
     })  
