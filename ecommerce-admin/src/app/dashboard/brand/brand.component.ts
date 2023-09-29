@@ -44,7 +44,7 @@ getparamsid:any;
     console.log('image', this.brandFile);
     formData.append('brand_name', this.form.value.brand_name);
     formData.append('status_id', this.form.value.status_id);
-    formData.append('status_id', this.form.value.user_id);
+    formData.append('user_id', this.form.value.user_id);
     formData.append('image', this.brandFile);
     this.brandservice.create(formData,(response:Boolean)=>{
       console.log(response);
