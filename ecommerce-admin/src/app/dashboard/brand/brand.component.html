@@ -27,6 +27,7 @@
                         <tbody>
                             <tr *ngFor="let brand of allbrand;let i=index;">
                                 <th scope="row">{{i+1}}</th>
+
                                 <td>{{brand.name}}</td>
                                 <td>
                                     <img [src]="'assets/uploads/brands/' + brand.img" [alt]="brand.name" height="15px"
@@ -40,7 +41,7 @@
                                 </td>
                                 <td>
                                     <span  class="text-success" data-bs-toggle="modal"
-                                        data-bs-target="#editBrandPopup"><i class="fa fa-edit"></i></span>
+                                        data-bs-target="#editBrandPopup" (click)="getSelectBrandId(brand.brand_id)"><i class="fa fa-edit"></i></span>
                                 </td>
                                 <td>
                                     <span  class="text-danger" data-bs-toggle="modal"
@@ -69,7 +70,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form" (ngSubmit)="addBrand()">
+                <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="addBrand()">
                     <div class="mb-3">
                         <label for="user" class="form-label">User</label>
                         <input type="text" class="form-control form-control-sm" id="user" placeholder="1"
@@ -87,7 +88,7 @@
                     </select>
                     <div class="mb-3">
                         <label for="brandimg" class="form-label">Brand Logo</label>
-                        <input class="form-control form-control-sm" id="brandimg" formControlName="brandimg" type="file"
+                        <input class="form-control form-control-sm" id="brandimg" type="file"
                             (change)="onFileSelected($event)">
                     </div>
                     <div class="d-flex justify-content-between">
@@ -118,24 +119,32 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form" (ngSubmit)="addBrand()">
+                <form [formGroup]="editBrandForm" enctype="multipart/form-data" (ngSubmit)="addBrand()">
                     <div class="mb-3">
 
                         <label for="brand" class="form-label">Brand</label>
-                        <input type="text" class="form-control form-control-sm" id="brand" placeholder="Hp"
-                            formControlName="brand_name">
+                        <input type="text" class="form-control form-control-sm" id="brand" 
+                        formControlName="edit_brand_id">
+                        <input type="text" class="form-control form-control-sm" id="brand" 
+                        formControlName="edit_brand_name">
                     </div>
 
                     <label for="exampleInputEmail1" class="form-label">Status</label>
-                    <select class="form-select form-select-sm mb-3" formControlName="status_id"
+                    <select class="form-select form-select-sm mb-3" formControlName="edit_status_id"
                         aria-label="Default select example">
                         <option value="0">Active</option>
                         <option value="1">De-active</option>
                     </select>
                     <div class="mb-3">
                         <label for="brandimg" class="form-label">Brand Logo</label>
-                        <input class="form-control form-control-sm" id="brandimg" formControlName="brandimg" type="file"
+                        <input class="form-control form-control-sm" id="brandimg" type="file"
                             (change)="onFileSelected($event)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="brandimg" class="form-label">Logo</label>
+                        <img  [src]="'assets/uploads/brands/' + imageName" alt="Image" height="20px"
+                        weight="20px"/>
+
                     </div>
                     <div class="d-flex justify-content-between">
                         <div>
@@ -181,9 +190,10 @@
                     </select>
                     <div class="mb-3">
                         <label for="brandimg" class="form-label">Brand Logo</label>
-                        <input class="form-control form-control-sm" id="brandimg" formControlName="brandimg" type="file"
+                        <input class="form-control form-control-sm" id="brandimg" type="file"
                             (change)="onFileSelected($event)">
                     </div>
+
                     <div class="d-flex justify-content-between">
 
                         <button type="submit" class="btn btn-sm btn-danger">Delete

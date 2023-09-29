@@ -45,9 +45,7 @@ db.user=require('./user');
 // get all brand data
 server.get("/viewBrand", (req, res) => {
   let qr = "select * from brand";
-  console.log(qr);
   db.query(qr, (err, result) => {
-    console.log(result);
     if (err) {
       console.log("Error : ", err);
       return err;
@@ -86,16 +84,35 @@ server.post("/addBrand", upload.single("image"), (req, res) => {
               '${user_id}'
               )`;
   db.query(qr, (err, result) => {
-    if (err) {
-      console.log(err, "error");
-    }
-    console.log(result, "result");
     res.send({
       message: "single brand data inserted successfully..",
+      status:true
     });
+    res.err({
+      message:err,
+      status:false
+    })
   });
 });
 // get single brand data - end here
+
+// get single brand start here
+// get all brand data
+server.get("/viewBrandById/:brand_id", (req, res) => {
+  console.log(req);
+  const { params:{ brand_id }}  = req;
+  let qr = `select * from brand where brand_id='${brand_id}'`;
+  db.query(qr, (err, result) => {
+    if (result.length > 0) {
+      res.send({
+        message: "get all brand details",
+        data: result,
+        status:true
+      });
+    }
+  });
+});
+
 // all BRAND CRUD OPERATION END HERE
 
 // ALL CATEGORY CRUD OPERATION START HERE -------------------------------------------------------------------------
@@ -104,15 +121,16 @@ server.post("/addBrand", upload.single("image"), (req, res) => {
 server.get("/viewCategory", (req, res) => {
   let qr = "select * from category";
   db.query(qr, (err, result) => {
-    if (err) {
-      console.log("Error : ", err);
-      return err;
-    }
     if (result.length > 0) {
       res.send({
         message: "get all category details",
-        data: result,
+        status:true,
+        data: result
       });
+      res.err({
+        message:err,
+        status:false
+      })
     }
   });
 });
@@ -131,7 +149,6 @@ const uploadCategory = multer({ storage: categoryimgStorage });
 // for add category function start here
 server.post("/addCategory", uploadCategory.single("img"), (req, res) => {
   const { filename, originalname, destination } = req.file;
-  console.log(req.file);
   let name = req.body.category_name;
   let statusid = req.body.status_id;
   let user_id = req.body.user_id;
@@ -141,15 +158,15 @@ server.post("/addCategory", uploadCategory.single("img"), (req, res) => {
               '${statusid}',
               '${user_id}'
               )`;
-  console.log(qr);
   db.query(qr, (err, result) => {
-    if (err) {
-      console.log(err, "error");
-    }
-    console.log(result, "result");
-    res.send({
+     res.send({
+      status: true,
       message: "single brand data inserted successfully..",
     });
+    res.err({
+      status: false,
+      message: err,
+    })
   });
 });
 
