@@ -10,6 +10,7 @@ server.get("/viewBrand", (req, res) => {
         return err;
       }
       if (result.length > 0) {
+
         res.send({
           message: "get all brand details",
           data: result,
@@ -48,6 +49,34 @@ server.get("/viewBrand", (req, res) => {
       });
     });
   });
+ 
+  // Edit brand data ===> PUT
+  server.put("/editBrandById", upload.single("image"), (req, res) => {
+    // let { filename, originalname, path } = req.file;
+    let filename;
+    if(req.body.image){
+      filename=req.body.image;
+    }
+    else{
+      filename = req.file;
+    }
+    console.log(req.file);
+    console.log(req.body);
+    let brand_name = req.body.brand_name;
+    let status_id = req.body.status_id;
+    let user_id = req.body.user_id;
+    let brand_id = req.body.brand_id;
+    let qr = `UPDATE brand SET name='${brand_name}', img='${filename}',status_id='${status_id}',user_id='${user_id}' WHERE brand_id='${brand_id}' `;
+    console.log(qr)
+    db.query(qr, (err, result) => {
+      res.send({
+        message: "single brand data updated successfully..",
+        status: true,
+      });
+    });
+  });
+
+  
   // get single brand data - end here
   
   // get single brand start here

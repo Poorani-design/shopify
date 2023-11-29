@@ -1,2 +1,6 @@
 
 npm install ngx-toastr
+//for removing duplicate dependency
+ng update
+
+npm ls @angular/common
