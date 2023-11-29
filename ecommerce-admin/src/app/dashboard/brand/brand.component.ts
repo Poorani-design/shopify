@@ -57,24 +57,6 @@ export class BrandComponent {
     // Correct: Initialize the form group when declaring it
    
   }
-
-  addBrand() {
-    const formData = new FormData();
-
-    formData.append('brand_name', this.form.value.brand_name);
-    formData.append('status_id', this.form.value.status_id);
-    formData.append('user_id', this.form.value.user_id);
-    formData.append('image', this.brandFile);
-    this.brandservice.create(formData, (response: any) => {
-      if (response.status) {
-        this.toast.showSuccess(response.message);
-        this.getBrand();
-      } else {
-        this.toast.showError(response.message);
-      }
-    });
-  }
-
   getBrand() {
     console.log('get brand');
     this.brandservice.getBrand((response: any) => {
@@ -91,6 +73,7 @@ export class BrandComponent {
   getSelectBrandId(id: any) {
     // this.selectedId={"brand_id":id};
     this.selectedId = id;
+    this.brandservice.getSelectedId(this.selectedId);
     console.log(this.selectedId);
     this.brandservice.getSingleBrand(this.selectedId, (response: any) => {
       if (response.status) {
@@ -107,4 +90,23 @@ export class BrandComponent {
       }
     });
   }
+  updateBrand(){
+  //   const editBrandForm = new FormData();
+
+  //   editBrandForm.append('brand_name', this.editBrandForm.value.brand_name);
+  //   let selectedId=this.editBrandForm.value.status_id;
+  //   editBrandForm.append('status_id', this.editBrandForm.value. );
+  //   editBrandForm.append('user_id', this.editBrandForm.value.user_id);
+  //   editBrandForm.append('image', this.brandFile);
+  //   console.log(this.editBrandForm.value)
+  //   this.brandservice.update(selectedId,editBrandForm, (response: any) => {
+  //     if (response.status) {
+        
+  //       this.toast.showSuccess(response.message);
+  //       this.getBrand();
+  //     } else {
+  //       this.toast.showError(response.message);
+  //     }
+  //   });
+   }
 }

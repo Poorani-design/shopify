@@ -19,6 +19,8 @@ import { CategoryComponent } from './dashboard/category/category.component';
 import { BrandComponent } from './dashboard/brand/brand.component';
 import { RoleComponent } from './dashboard/role/role.component';
 import { DiscountComponent } from './dashboard/discount/discount.component';
+import { AddBrandComponent } from './dashboard/brand/crud/add-brand/add-brand.component';
+import { EditBrandComponent } from './dashboard/brand/crud/edit-brand/edit-brand.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { DiscountComponent } from './dashboard/discount/discount.component';
     CategoryComponent,
     BrandComponent,
     RoleComponent,
-    DiscountComponent
+    DiscountComponent,
+    AddBrandComponent,
+    EditBrandComponent
   ],
   imports: [
     FormsModule,

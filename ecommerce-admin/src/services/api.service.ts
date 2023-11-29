@@ -29,7 +29,9 @@ export class ApiService {
     getSingleBrandApi(selectedId:any):Observable<any>{
       return this.http.get(`${this.apiUrl}/viewBrandById/${selectedId}`);   
     }
-
+    updateBrandApi(data:any):Observable<any>{
+      return this.http.put(`${this.apiUrl}/editBrandById`, data); 
+    }
 
 
 
